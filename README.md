@@ -37,7 +37,7 @@ broker:
 Once application is running with the external or in-memory broker, you can login using the 
 
 **UserName**: user
-**Password**: <Printed on the console>
+**Password**: Printedon the console
 
 1. Login
 2. Open browser devtool and navigate to the network tab and filter websocket calls
