@@ -35,4 +35,5 @@ broker:
 **Issue:**
 
 In memory broker do not send additional line(as message) for each message.
- But external broker sends the additional line ('\') on each message it sent out to the client. why?
+ But external broker sends the additional line ('\') on each message it sent out to the client. why? 
+ Also If the payload is just simple string then there is no noise even with the external broker. 
