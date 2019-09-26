@@ -1,6 +1,6 @@
 # Getting Started
 
-**Pre-Requist: Docker**
+**Prerequisite: Docker**
 
 Run the ActiveMQ broker:
 
