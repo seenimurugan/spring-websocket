@@ -20,9 +20,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                 .enableStompBrokerRelay("/topic/", "/queue/")
                 .setRelayHost("localhost")
                 .setRelayPort(61613)
-                .setClientLogin("capp")
+                .setClientLogin("admin")
                 .setClientPasscode("admin")
-                .setSystemLogin("capp")
+                .setSystemLogin("admin")
                 .setSystemPasscode("admin");
 
 //		config.setApplicationDestinationPrefixes("/app")
