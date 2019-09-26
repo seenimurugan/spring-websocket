@@ -30,7 +30,7 @@ public class WebSocketController {
 		IntStream.range(1, 20).forEach(value -> {
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
-                messagingTemplate.convertAndSend("/topic/replytopic", objectMapper.writeValueAsBytes(holder));
+                messagingTemplate.convertAndSend("/topic/replytopic", objectMapper.writeValueAsString(holder));
             } catch (Exception e) {
                 e.printStackTrace();
             }
