@@ -27,7 +27,7 @@ public class WebSocketController {
 	public void processMessageFromClient(@Payload String message, Principal principal) throws Exception {
 		Event event = new Event("test", "service", "class", true);
 		MessageWrapper holder = new MessageWrapper("test", event);
-		IntStream.range(1, 5).forEach(value -> {
+		IntStream.range(1, 20).forEach(value -> {
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
                 messagingTemplate.convertAndSend("/topic/replytopic", objectMapper.writeValueAsBytes(holder));
