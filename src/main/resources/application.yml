@@ -6,4 +6,7 @@
 
 logging:
   level:
-    org.springframework.messaging: TRACE
+    org.springframework.messaging: INFO
+
+broker:
+  in-memory: false

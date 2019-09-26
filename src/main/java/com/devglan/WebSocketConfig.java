@@ -1,5 +1,6 @@
 package com.devglan;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -14,19 +15,27 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
+    @Value("${broker.in-memory}")
+    private boolean useInMemoryBroker;
+
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.setApplicationDestinationPrefixes("/app")
-                .enableStompBrokerRelay("/topic/", "/queue/")
-                .setRelayHost("localhost")
-                .setRelayPort(61613)
-                .setClientLogin("admin")
-                .setClientPasscode("admin")
-                .setSystemLogin("admin")
-                .setSystemPasscode("admin");
+        if (useInMemoryBroker) {
 
-//		config.setApplicationDestinationPrefixes("/app")
-//                .enableSimpleBroker("/topic/", "/queue/");
+            config.setApplicationDestinationPrefixes("/app")
+                    .enableSimpleBroker("/topic", "/queue/");
+
+        } else {
+            config.setApplicationDestinationPrefixes("/app")
+                    .enableStompBrokerRelay("/topic/", "/queue/")
+                    .setRelayHost("localhost")
+                    .setRelayPort(61613)
+                    .setClientLogin("admin")
+                    .setClientPasscode("admin")
+                    .setSystemLogin("admin")
+                    .setSystemPasscode("admin");
+        }
+
     }
 
     @Override
@@ -41,7 +50,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
             public Message<?> preSend(Message<?> message, MessageChannel channel) {
                 if ((getRandomNumberInRange(1, 10)) % 2 == 0) {
                     return null;
-                } else  {
+                } else {
                     return message;
                 }
             }
@@ -54,6 +63,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
             throw new IllegalArgumentException("max must be greater than min");
         }
 
-        return (int)(Math.random() * ((max - min) + 1)) + min;
+        return (int) (Math.random() * ((max - min) + 1)) + min;
     }
 }
